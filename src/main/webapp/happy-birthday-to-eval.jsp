@@ -62,7 +62,8 @@
             </p>
             <br>
             <p>
-                &emsp;&emsp;宝贝! 做我女朋友吧! 我始终相信,美好生活是双手创造出来的. 幸福,就在路上不愿的地方. 你愿意与我携手出发吗? 看到时光机器没,就在脚下.
+                &emsp;&emsp;宝贝! 做我女朋友吧! 记不记得我说过,每一个阶段都应该有一个仪式,不一样的方式,可以让我们多年以后,依然记得当年的故事.
+                我始终相信,美好生活是双手创造出来的. 幸福,就在路上不愿的地方. 你愿意与我携手出发吗? 看到时光机器没,就在脚下.
             </p>
             <p>
                 &emsp;&emsp;Here we go!
@@ -99,6 +100,15 @@
         Module = {
             ctx : '<%= ctx%>',
             openPageInSelf: function(link) {
+                var confirmMsg = "敢问皇后! 是否需要微臣快马加鞭通知陛下您已答应做他女朋友并准备登上时光机器?";
+                var trueMsg = "喳!";
+                var falseMsg = "皇后请恕罪! 奴才的那匹马已经急不可待,飞奔而去了…";
+                var ret=confirm(confirmMsg);
+                if(ret) {
+                    alert(trueMsg);
+                } else {
+                    alert(falseMsg)
+                }
                 window.open(link, "_self");
             }
         };
@@ -120,7 +130,6 @@
             };
             //屏蔽右键单击
             document.oncontextmenu = function() {
-
                 return false;
             }
         }
