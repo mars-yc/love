@@ -347,6 +347,11 @@ var m3D = function () {
 </head>
 
 <body>
+
+<div id="happy-birthday-to-you-audio">
+	<EMBED src="audio/footprint-of-rain.mp3" autostart="true" loop="20" width=0 height=0>
+</div>
+
 <div id="screen">
 	<div id="command">
 
