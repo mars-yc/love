@@ -1,5 +1,7 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<%%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+	String ctx = request.getContextPath();
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -348,8 +350,8 @@ var m3D = function () {
 <div id="screen">
 	<div id="command">
 
-		<h1>deliberate lies</h1>
-		 Defiant, stony, deliberate, their lies will not get in my way.
+		<h1>Photo Wall</h1>
+		Cherish every moment
 		<div id="bar"></div>
 	</div>
 	<div id="urlInfo"></div>
@@ -360,9 +362,9 @@ var m3D = function () {
 setTimeout(function() {
 	m3D.init(
 		[ 
-			{ src: 'photo-1.png', url: 'http://www.jq22.com', title: 'jump to random script', color: '#fff' },
+			{ src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' },
 			{ src: 'photo-1.png' },
-			{ src: 'photo-1.png', url: 'http://www.jq22.com', color: '#fff' }
+			{ src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' }
 		]
 	);
 }, 500);
