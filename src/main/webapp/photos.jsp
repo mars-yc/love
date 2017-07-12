@@ -378,20 +378,15 @@ setTimeout(function() {
 Module = {
 
     autoDisplayFlag: true,
+	displayInterval: 4000,
 
 	autoDisplayARound: function (repeatTimes, interruptable) {
         var imgDiv = $('#bar').find('div');
-        for (var i=0;i<repeatTimes;i++) {
-            alert('ok');
-            if(interruptable && !this.autoDisplayFlag)
-                break;
-            imgDiv.each(function (i, o) {
-                //alert("第" + i + "号元素的内容是:" + $(o).html());
-                setTimeout(function () {
-                    $(o).click();
-                }, 4000 * i);
-            });
-        }
+        imgDiv.each(function (index, value) {
+            setTimeout(function () {
+                $(value).click();
+            }, Module.displayInterval * index);
+        });
     },
 
 	autoDisplay: function (interval, repeatTimes) {
