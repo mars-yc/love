@@ -380,7 +380,7 @@ Module = {
     autoDisplayFlag: true,
 	displayInterval: 4000,
 
-	autoDisplayARound: function (repeatTimes, interruptable) {
+	autoDisplayARound: function () {
         var imgDiv = $('#bar').find('div');
         imgDiv.each(function (index, value) {
             setTimeout(function () {
