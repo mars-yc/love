@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Our Memory</title>
 
+	<script src="<%= ctx%>/js/jquery-2.1.1.js"></script>
+
 <meta http-equiv="imagetoolbar" content="no">
 <style type="text/css">
 	html {
@@ -342,7 +344,6 @@ var m3D = function () {
 		init : init
 	}
 }();
-
 </script>
 </head>
 
@@ -373,6 +374,60 @@ setTimeout(function() {
 		]
 	);
 }, 500);
+
+Module = {
+
+    autoDisplayFlag: true,
+
+	autoDisplayARound: function (repeatTimes, interruptable) {
+        var imgDiv = $('#bar').find('div');
+        for (var i=0;i<repeatTimes;i++) {
+            alert('ok');
+            if(interruptable && !this.autoDisplayFlag)
+                break;
+            imgDiv.each(function (i, o) {
+                //alert("第" + i + "号元素的内容是:" + $(o).html());
+                setTimeout(function () {
+                    $(o).click();
+                }, 4000 * i);
+            });
+        }
+    },
+
+	autoDisplay: function (interval, repeatTimes) {
+        if(interval <= 0 || (repeatTimes <= 0 && repeatTimes != -1))
+            return;
+        if(this.autoDisplayFlag) {
+            console.log('ok');
+            // -1 means repeat all the times
+            if(repeatTimes != -1)
+            	repeatTimes -= 1;
+            setTimeout(function() {
+                Module.autoDisplay(interval, repeatTimes);
+			}, interval)
+        }
+	},
+
+	bindEventToStopAutoDisplay: function () {
+        $('body').bind('contextmenu', function() {
+            Module.autoDisplayFlag = false;
+            return false;
+        });
+	},
+
+	onload: function () {
+        this.bindEventToStopAutoDisplay();
+        this.autoDisplay(1000, -1);
+    }
+
+}
+
+window.onload = function () {
+    Module.bindEventToStopAutoDisplay();
+    setTimeout(function () {
+        Module.autoDisplayARound(1000, true);
+    }, 1000);
+}
 </script>
 </body>
 </html>

@@ -78,7 +78,7 @@
         </div>
 
         <div id="bottom-nav" style="color: bisque; margin-top: 700px;">
-            <a href="#" onclick="javascript:Module.openPageInSelf('first-sight.jsp');">
+            <a href="#" onclick="javascript:Module.openPageInSelf('photos.jsp');">
                 <img src="img/arrow.jpg" style="width: 100px; float: right; margin-left: 10px; margin-right: 300px;">
             </a>
             <span style="float: right; margin-top: 20px;">Take Time machine</span>
