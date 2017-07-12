@@ -379,28 +379,26 @@ Module = {
 
     autoDisplayFlag: true,
 	displayInterval: 4000,
+	imgSnapDivs: [],
+	intervalId: 0,
+	currentIndex: 0,
 
-	autoDisplayARound: function () {
-        var imgDiv = $('#bar').find('div');
-        imgDiv.each(function (index, value) {
-            setTimeout(function () {
-                $(value).click();
-            }, Module.displayInterval * index);
-        });
+	displayPhotos: function () {
+        var totalDivs = Module.imgSnapDivs.size();
+        if(Module.autoDisplayFlag) {
+            Module.imgSnapDivs[Module.currentIndex].click();
+            Module.currentIndex++;
+            if(Module.currentIndex >= totalDivs)
+                Module.currentIndex = 0;
+		} else {
+            clearInterval(Module.intervalId);
+		}
     },
 
-	autoDisplay: function (interval, repeatTimes) {
-        if(interval <= 0 || (repeatTimes <= 0 && repeatTimes != -1))
-            return;
-        if(this.autoDisplayFlag) {
-            console.log('ok');
-            // -1 means repeat all the times
-            if(repeatTimes != -1)
-            	repeatTimes -= 1;
-            setTimeout(function() {
-                Module.autoDisplay(interval, repeatTimes);
-			}, interval)
-        }
+	autoDisplay: function () {
+        Module.bindEventToStopAutoDisplay();
+        Module.imgSnapDivs = $('#bar').find('div');
+        Module.intervalId = setInterval(Module.displayPhotos, Module.displayInterval);
 	},
 
 	bindEventToStopAutoDisplay: function () {
@@ -408,19 +406,13 @@ Module = {
             Module.autoDisplayFlag = false;
             return false;
         });
-	},
-
-	onload: function () {
-        this.bindEventToStopAutoDisplay();
-        this.autoDisplay(1000, -1);
-    }
+	}
 
 }
 
 window.onload = function () {
-    Module.bindEventToStopAutoDisplay();
     setTimeout(function () {
-        Module.autoDisplayARound(1000, true);
+        Module.autoDisplay();
     }, 1000);
 }
 </script>
