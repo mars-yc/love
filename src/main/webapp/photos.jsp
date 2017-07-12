@@ -352,27 +352,21 @@ var m3D = function () {
 <div id="audio-container">
 </div>
 
-<div id="screen">
-	<div id="command">
-
-		<h1>Photo Wall</h1>
-		Cherish every moment
-		<div id="bar"></div>
-	</div>
-	<div id="urlInfo"></div>
-</div>
-
 <script type="text/javascript">
 /* ==== start script ==== */
-setTimeout(function() {
-	m3D.init(
-		[ 
-			{ src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' },
-			{ src: 'photo-1.png' },
-			{ src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' }
-		]
-	);
-}, 500);
+setTimeout(initPhotoWall, 500);
+
+function initPhotoWall() {
+    $('#screen').remove();
+	$('<div id="screen"><div id="command"><h1>Photo Wall</h1>Cherish Every Moment<div id="bar"></div></div><div id="urlInfo"></div></div>').insertAfter('#audio-container');
+    m3D.init(
+        [
+            { src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' },
+            { src: 'photo-1.png' },
+            { src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' }
+        ]
+    );
+}
 
 Module = {
 
@@ -401,18 +395,23 @@ Module = {
         	If you change the src of EMBED, the mp3 won't be loaded
 			So, need to append the EMBED by dynamic
 		--%>
-        $('<embed src="' + Module.audioSrcUrlLoveFromOversea + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+		Module.startAudio(Module.audioSrcUrlLoveFromOversea);
         Module.bindEventToStopAutoDisplay();
         Module.imgSnapDivs = $('#bar').find('div');
         Module.intervalId = setInterval(Module.displayPhotos, Module.displayInterval);
 	},
 
+	startAudio: function (audioUrl) {
+        $("#audio-container").children().remove();
+        $('<embed src="' + audioUrl + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+    },
+
 	bindEventToStopAutoDisplay: function () {
         $('body').bind('contextmenu', function() {
             if(Module.autoDisplayFlag) {
                 Module.autoDisplayFlag = false;
-                $("#audio-container").children().remove();
-                $('<embed src="' + Module.audioSrcUrlFootprintOfRain + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+                Module.startAudio(Module.audioSrcUrlFootprintOfRain);
+                initPhotoWall();
             }
             return false;
         });
