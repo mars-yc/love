@@ -349,8 +349,7 @@ var m3D = function () {
 
 <body>
 
-<div id="happy-birthday-to-you-audio">
-	<EMBED src="audio/footprint-of-rain.mp3" autostart="true" loop="20" width=0 height=0>
+<div id="audio-container">
 </div>
 
 <div id="screen">
@@ -382,6 +381,8 @@ Module = {
 	imgSnapDivs: [],
 	intervalId: 0,
 	currentIndex: 0,
+    audioSrcUrlLoveFromOversea: 'audio/love-from-oversea.mp3',
+    audioSrcUrlFootprintOfRain: 'audio/footprint-of-rain.mp3',
 
 	displayPhotos: function () {
         var totalDivs = Module.imgSnapDivs.size();
@@ -396,6 +397,11 @@ Module = {
     },
 
 	autoDisplay: function () {
+        <%--
+        	If you change the src of EMBED, the mp3 won't be loaded
+			So, need to append the EMBED by dynamic
+		--%>
+        $('<embed src="' + Module.audioSrcUrlLoveFromOversea + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
         Module.bindEventToStopAutoDisplay();
         Module.imgSnapDivs = $('#bar').find('div');
         Module.intervalId = setInterval(Module.displayPhotos, Module.displayInterval);
@@ -403,7 +409,11 @@ Module = {
 
 	bindEventToStopAutoDisplay: function () {
         $('body').bind('contextmenu', function() {
-            Module.autoDisplayFlag = false;
+            if(Module.autoDisplayFlag) {
+                Module.autoDisplayFlag = false;
+                $("#audio-container").children().remove();
+                $('<embed src="' + Module.audioSrcUrlFootprintOfRain + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+            }
             return false;
         });
 	}
