@@ -1,35 +1,61 @@
-Module = {
-    
-    ctx : '<%= ctx%>',
-    
-    openPageInSelf: function(link) {
-        window.open(link, "_self");
-    },
-    
-    getContextPath: function () {
-        return document.location.pathname;
-    }
-    
-};
+Media = {
 
-<!-- disable the viewing of source code -->
-/*
-window.onload = function() {
-    document.onkeydown = function() {
-        var e = window.event || arguments[0];
-        //屏蔽F12
-        if(e.keyCode == 123) {
-            return false;
-            //屏蔽Ctrl+Shift+I
-        } else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
-            return false;
-            //屏蔽Shift+F10
-        } else if((e.shiftKey) && (e.keyCode == 121)){
-            return false;
+    autoDisplayFlag: true,
+    displayInterval: 4000,
+    imgSnapDivs: [],
+    intervalId: 0,
+    currentIndex: 0,
+    audioSrcUrlLoveFromOversea: 'audio/love-from-oversea.mp3',
+    audioSrcUrlFootprintOfRain: 'audio/footprint-of-rain.mp3',
+
+    displayPhotos: function () {
+        var totalDivs = Media.imgSnapDivs.size();
+        if(Media.autoDisplayFlag) {
+            Media.imgSnapDivs[Media.currentIndex].click();
+            Media.currentIndex++;
+            if(Media.currentIndex >= totalDivs)
+                Media.currentIndex = 0;
+        } else {
+            clearInterval(Media.intervalId);
         }
-    };
-    //屏蔽右键单击
-    document.oncontextmenu = function() {
-        return false;
+    },
+
+    autoDisplay: function () {
+        /*
+            If you change the src of EMBED, the mp3 won't be loaded
+            So, need to append the EMBED by dynamic
+        */
+        Media.startAudio(Media.audioSrcUrlLoveFromOversea);
+        Media.bindEventToStopAutoDisplay();
+        Media.imgSnapDivs = $('#bar').find('div');
+        Media.intervalId = setInterval(Media.displayPhotos, Media.displayInterval);
+    },
+
+    startAudio: function (audioUrl, node) {
+        $("#audio-container").children().remove();
+        //$('<embed src="' + audioUrl + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+        $('<embed src="' + audioUrl + '" autostart="true" loop="true" hidden="true"></embed>').appendTo($(node));
+        //$('<bgsound src="' + audioUrl + '"autostart=true loop=infinite>').appendTo($("#audio-container"));
+    },
+
+    bindEventToStopAutoDisplay: function () {
+        $('body').bind('contextmenu', function() {
+            if(Media.autoDisplayFlag) {
+                Media.autoDisplayFlag = false;
+                Media.startAudio(Media.audioSrcUrlFootprintOfRain);
+                initPhotoWall();
+            }
+            return false;
+        });
     }
-}*/
+
+}
+
+Schedule = {
+
+    displayLetter: function () {
+        $('.step-1').addClass('hidden');
+        $('.step-2').removeClass('hidden');
+    }
+
+}

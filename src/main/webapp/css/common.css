@@ -24,6 +24,10 @@
     margin-left: 150px;
 }
 
+.hidden {
+    display: none;
+}
+
 #letter {
     background: url(../img/letter-paper.jpg) no-repeat 0px 0px;
     height: 900px;
