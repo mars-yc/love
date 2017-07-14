@@ -207,7 +207,7 @@ function initPhotoWall() {
             this.z = z;
             this.css = this.img.style;
         }
-		/* ==== main 3D animation ==== */
+		/* ==== main.js 3D animation ==== */
         Diapo.prototype.anim = function () {
             if (this.isLoaded) {
 				/* ---- 3D to 2D projection ---- */
@@ -296,7 +296,7 @@ function initPhotoWall() {
             run();
         }
         ////////////////////////////////////////////////////////////////////////////
-		/* ==== main loop ==== */
+		/* ==== main.js loop ==== */
         var run = function () {
 			/* ---- x axis move ---- */
             if (camera.tx) {

@@ -5,21 +5,24 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="<%= ctx%>/css/style1.css">
+    <link rel="stylesheet" href="<%= ctx%>/css/common.css">
 </head>
-<body background="img/bg.gif">
+<body class="frame-bd-c-1">
 
-    <div id="happy-birthday-to-you-audio">
+    <%--<div id="happy-birthday-to-you-audio">
         <EMBED src="audio/happy-birthday.mp3" autostart="true" loop=20 width=0 height=0>
-    </div>
+    </div>--%>
 
-    <div id="main-container" style="margin-left: auto; margin-right: auto; width: 960px;">
-        <div id="content-1" style="margin-top: 50px; width: 700px; height: 200px; margin-left: auto; margin-right: auto;">
-            <div style="background: url(img/shinning-star.gif) no-repeat 0px 0px; width:80px; height: 80px; float: left;"></div>
-            <div style="background: url(img/shinning-star.gif) no-repeat 0px 0px; width:80px; height: 80px; float: right;"></div>
-            <div style="background: url(img/eval.jpg) no-repeat 0px 0px;width:400px; height: 150px; margin-left: 150px;"></div>
+    <div class="frame-main-container center">
+        <div id="div-recipient" class="center">
+            <div class="shining-star left-float"></div>
+            <div class="shining-star right-float"></div>
+            <div class="eval"></div>
         </div>
 
-        <div class="express" style="color: bisque; text-align: left;">
+        <%--<div class="express" style="color: bisque; text-align: left;font-family: 'Times New Roman',Times,serif;font-size:18px;">--%>
+        <div class="express" style="color: bisque; text-align: left;font-family: '叶根友毛笔行书2.0版';font-size:18px;">
             <ul>
                 <li style="list-style-image: url(img/li-label.gif);">
                     Light the candle and make a wish
@@ -37,9 +40,11 @@
                 <li style="list-style-image: url(img/li-label.gif); margin-top: 50px;">
                     From Lesly
                     <br><br>
-                    &emsp;&emsp;宝贝, 咱们认识后你的第一个生日, 很想回来陪你一起过, 遗憾假期可能会安排不过来. 如果今天我不能回来当面跟你说一声生日快乐. 那我一定会在远方送上祝福.
-                    希望你永远开心、快乐、幸福.
+                    <p>
+                        &emsp;&emsp;宝贝
                     </p>
+                    &emsp;&emsp;认识以来, 你的第一个生日, 很想回来陪你一起过, 遗憾假期可能会安排不过来. 如果今天我不能回来当面跟你说一声生日快乐. 那我一定会在远方送上祝福.
+                    希望你永远开心、快乐、幸福.
                 </li>
             </ul>
             <div id="bottom-nav" style="color: bisque; margin-top: 50px;">
@@ -49,39 +54,7 @@
                 <span style="float: right; margin-top: 20px;">Take Time machine</span>
             </div>
         </div>
-
-        <script type="application/javascript">
-            if(window.Module == undefined) {
-                Module = {};
-            }
-            Module = {
-                ctx : '<%= ctx%>',
-                openPageInSelf: function(link) {
-                    window.open(link, "_self");
-                }
-            };
-
-            <!-- disable the viewing of source code -->
-            window.onload = function() {
-                document.onkeydown = function() {
-                    var e = window.event || arguments[0];
-                    //屏蔽F12
-                    if(e.keyCode == 123) {
-                        return false;
-                        //屏蔽Ctrl+Shift+I
-                    } else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
-                        return false;
-                        //屏蔽Shift+F10
-                    } else if((e.shiftKey) && (e.keyCode == 121)){
-                        return false;
-                    }
-                };
-                //屏蔽右键单击
-                document.oncontextmenu = function() {
-                    return false;
-                }
-            }
-        </script>
+    </div>
 
 </body>
 </html>
