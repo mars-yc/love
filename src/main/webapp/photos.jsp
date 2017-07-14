@@ -352,8 +352,22 @@ function initPhotoWall() {
     m3D.init(
         [
             { src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' },
-            { src: 'photo-1.png' },
-            { src: 'photo-1.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' }
+            { src: 'photo-31.png' },
+            { src: 'photo-39.png' },
+            { src: 'photo-32.png' },
+            { src: 'photo-12.png' },
+            { src: 'photo-34.png' },
+            { src: 'photo-13.png' },
+            { src: 'photo-2.png' },
+            { src: 'photo-3.png' },
+            { src: 'photo-4.png' },
+            { src: 'photo-5.png' },
+            { src: 'photo-6.png' },
+            { src: 'photo-7.png' },
+            { src: 'photo-8.png' },
+            { src: 'photo-9.png' },
+            { src: 'photo-10.png' },
+            { src: 'photo-11.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' }
         ]
     );
 }
@@ -393,7 +407,9 @@ Module = {
 
 	startAudio: function (audioUrl) {
         $("#audio-container").children().remove();
-        $('<embed src="' + audioUrl + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+        //$('<embed src="' + audioUrl + '" autostart="true" loop="20" width=0 height=0>').appendTo($("#audio-container"));
+        $('<embed src="' + audioUrl + '" autostart="true" loop="true" hidden="true"></embed>').appendTo($("#audio-container"));
+		//$('<bgsound src="' + audioUrl + '"autostart=true loop=infinite>').appendTo($("#audio-container"));
     },
 
 	bindEventToStopAutoDisplay: function () {
