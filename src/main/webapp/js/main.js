@@ -53,9 +53,8 @@ Media = {
 
 Schedule = {
 
-    displayLetter: function () {
-        $('.step-1').addClass('hidden');
-        $('.step-2').removeClass('hidden');
+    openPageInSelf: function(link) {
+        window.open(link, "_self");
     }
 
 }
