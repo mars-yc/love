@@ -7,6 +7,8 @@
     <title>遇见</title>
     <link rel="stylesheet" href="<%= ctx%>/css/style1.css">
     <link rel="stylesheet" href="<%= ctx%>/css/common.css">
+    <script src="<%= ctx%>/js/jquery-2.1.1.js"></script>
+    <script src="<%= ctx%>/js/main.js"></script>
 </head>
 <body background="img/bg.gif" style="text-align: center;">
 
@@ -76,9 +78,9 @@
                 <embed src="flash/cat.swf" width="100%" height="100%" wmode="transparent">
             </div>
         </div>
-        <div id="bottom-nav" style="color: bisque; margin-top: 0px;">
-            <a href="#" onclick="javascript:Module.openPageInSelf('photos.jsp');">
-                <img src="img/arrow.jpg" style="width: 100px; float: right; margin-left: 10px; margin-right: 300px;">
+        <div id="bottom-nav" style="color: bisque; margin-top: 0px; margin-right: 20%;">
+            <a href="#" onclick="javascript:Schedule.openPageInSelf('photos.jsp');">
+                <img src="img/arrow.jpg" style="width: 100px; float: right; margin-right: 20%;">
             </a>
             <span style="float: right; margin-top: 20px;">View The Photo Wall</span>
         </div>
