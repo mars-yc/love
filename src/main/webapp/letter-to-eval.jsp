@@ -21,7 +21,7 @@
         <div id="frame-divs-container" style="color: bisque; text-align: left;font-family: '叶根友毛笔行书2.0版';font-size:18px;">
 
             <div id="letter" class="center" style="margin-top: 150px;">
-                <div style="padding: 120px 60px 0px 60px; margin-top: -100px;" class="letter-to-eval">
+                <div style="padding: 50px 60px 0px 60px;" class="letter-to-eval">
                     &emsp;&emsp;宝贝
                     <br>
                     <br>
