@@ -1,0 +1,9 @@
+07-15 20:40:36 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "BLOG_CONTENT VARCHAR(255)": "STRINGDECODE('<p><span style=\""font-family: &#39;\u53f6\u6839\u53cb\u6bdb\u7b14\u884c\u4e662.0\u7248&#39;; font-size: 18px; whit... (1797)"; SQL statement:
+insert into love_blog_tbl (id, blog_content, blog_publish_time) values (null, ?, ?) [22001-170]
+07-15 20:46:42 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "BLOG_CONTENT VARCHAR(255)": "STRINGDECODE('<p><span style=\""font-family: &#39;\u53f6\u6839\u53cb\u6bdb\u7b14\u884c\u4e662.0\u7248&#39;; font-size: 18px; whit... (319)"; SQL statement:
+insert into love_blog_tbl (id, blog_content, blog_publish_time) values (null, ?, ?) [22001-170]
+07-15 20:46:46 jdbc[2]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "BLOG_CONTENT VARCHAR(255)": "STRINGDECODE('<p><span style=\""font-family: &#39;\u53f6\u6839\u53cb\u6bdb\u7b14\u884c\u4e662.0\u7248&#39;; font-size: 18px; whit... (256)"; SQL statement:
+insert into love_blog_tbl (id, blog_content, blog_publish_time) values (null, ?, ?) [22001-170]

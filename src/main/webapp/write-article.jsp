@@ -21,7 +21,6 @@
     <h1 style="color: #ffffff; margin-left: 300px;">Write Article</h1>
 
     <div id="myEditor" style="width:800px;height:240px; font-size: 14px;">
-        <p></p>
     </div>
 
     <button onclick="getContent()">提交</button>
@@ -30,23 +29,23 @@
 
 </div>
 <script type="text/javascript">
-    //实例化编辑器
+
     var um = UM.getEditor('myEditor');
 
     function getContent() {
-        var content = UM.getEditor('myEditor').getContent();
-        alert(content);
-
+        var blogContent = um.getContent();
+        var jsonData = {
+            content: blogContent,
+            publishTime: new Date()
+        };
         $.ajax({
             type: "post",
-            dataType: "html",
-            url: '/Resources/GetList.ashx',
-            data: dataurl,
+            dataType: "json",
+            url: '<%= ctx%>/mvc/blog/save',
+            data: jsonData,
             success: function (data) {
                 if (data != "") {
-                    $("#pager").pager({ pagenumber: pagenumber, pagecount: data.split("$$")[1], buttonClickCallback: PageClick });
-                    $("#anhtml").html(data.split("$$")[0]);
-
+                    alert(data);
                 }
             }
         });
