@@ -1,45 +1,32 @@
 package com.baidu.ueditor.um;
 
+import org.apache.commons.fileupload.FileItemIterator;
+import org.apache.commons.fileupload.FileItemStream;
+import org.apache.commons.fileupload.FileUploadBase;
+import org.apache.commons.fileupload.FileUploadException;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.util.Streams;
+import sun.misc.BASE64Decoder;
+
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import org.apache.commons.fileupload.*;
-import org.apache.commons.fileupload.FileUploadBase.InvalidContentTypeException;
-import org.apache.commons.fileupload.FileUploadBase.SizeLimitExceededException;
-import org.apache.commons.fileupload.util.*;
-import org.apache.commons.fileupload.servlet.*;
-import org.apache.commons.fileupload.FileItemIterator;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 
-
-import sun.misc.BASE64Decoder;
-import javax.servlet.http.HttpServletRequest;
-/**
- * UEditor文件上传辅助类
- *
- */
 public class Uploader {
-    // 输出文件地址
     private String url = "";
-    // 上传文件名
     private String fileName = "";
-    // 状态
     private String state = "";
-    // 文件类型
     private String type = "";
-    // 原始文件名
     private String originalName = "";
-    // 文件大小
     private long size = 0;
 
     private HttpServletRequest request = null;
     private String title = "";
 
-    // 保存路径
     private String savePath = "upload";
-    // 文件允许格式
     private String[] allowFiles = { ".rar", ".doc", ".docx", ".zip", ".pdf",".txt", ".swf", ".wmv", ".gif", ".png", ".jpg", ".jpeg", ".bmp" };
-    // 文件大小限制，单位KB
     private int maxSize = 10000;
 
     private HashMap<String, String> errorInfo = new HashMap<String, String>();
@@ -91,11 +78,9 @@ public class Uploader {
                     Streams.copy(in, output, true);
                     this.state=this.errorInfo.get("SUCCESS");
                     this.size = file.length();
-                    //UE中只会处理单张上传，完成后即退出
                     break;
                 } else {
                     String fname = fis.getFieldName();
-                    //只处理title，其余表单请自行处理
                     if(!fname.equals("pictitle")){
                         continue;
                     }
@@ -110,9 +95,9 @@ public class Uploader {
 
                 }
             }
-        } catch (SizeLimitExceededException e) {
+        } catch (FileUploadBase.SizeLimitExceededException e) {
             this.state = this.errorInfo.get("SIZE");
-        } catch (InvalidContentTypeException e) {
+        } catch (FileUploadBase.InvalidContentTypeException e) {
             this.state = this.errorInfo.get("ENTYPE");
         } catch (FileUploadException e) {
             this.state = this.errorInfo.get("REQUEST");
@@ -121,10 +106,6 @@ public class Uploader {
         }
     }
 
-    /**
-     * 接受并保存以base64格式上传的文件
-     * @param fieldName
-     */
     public void uploadBase64(String fieldName){
         String savePath = this.getFolder(this.savePath);
         String base64Data = this.request.getParameter(fieldName);
@@ -149,12 +130,6 @@ public class Uploader {
         }
     }
 
-    /**
-     * 文件类型判断
-     *
-     * @param fileName
-     * @return
-     */
     private boolean checkFileType(String fileName) {
         Iterator<String> type = Arrays.asList(this.allowFiles).iterator();
         while (type.hasNext()) {
@@ -166,30 +141,16 @@ public class Uploader {
         return false;
     }
 
-    /**
-     * 获取文件扩展名
-     *
-     * @return string
-     */
     private String getFileExt(String fileName) {
         return fileName.substring(fileName.lastIndexOf("."));
     }
 
-    /**
-     * 依据原始文件名生成新文件名
-     * @return
-     */
     private String getName(String fileName) {
         Random random = new Random();
         return this.fileName = "" + random.nextInt(10000)
                 + System.currentTimeMillis() + this.getFileExt(fileName);
     }
 
-    /**
-     * 根据字符串创建本地目录 并按照日期建立子目录返回
-     * @param path
-     * @return
-     */
     private String getFolder(String path) {
         SimpleDateFormat formater = new SimpleDateFormat("yyyyMMdd");
         path += "/" + formater.format(new Date());
@@ -205,12 +166,6 @@ public class Uploader {
         return path;
     }
 
-    /**
-     * 根据传入的虚拟路径获取物理路径
-     *
-     * @param path
-     * @return
-     */
     private String getPhysicalPath(String path) {
         String servletPath = this.request.getServletPath();
         String realPath = this.request.getSession().getServletContext()
