@@ -355,9 +355,7 @@ function initPhotoWall() {
             { src: 'photo-31.png' },
             { src: 'photo-39.png' },
             { src: 'photo-32.png' },
-            { src: 'photo-12.png' },
             { src: 'photo-34.png' },
-            { src: 'photo-13.png' },
             { src: 'photo-2.png' },
             { src: 'photo-3.png' },
             { src: 'photo-4.png' },
@@ -365,8 +363,6 @@ function initPhotoWall() {
             { src: 'photo-6.png' },
             { src: 'photo-7.png' },
             { src: 'photo-8.png' },
-            { src: 'photo-9.png' },
-            { src: 'photo-10.png' },
             { src: 'photo-11.png', url: '<%= ctx%>', title: '返回主页', color: '#fff' }
         ]
     );
