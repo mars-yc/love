@@ -4,84 +4,62 @@
 %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Lesly and Eval</title>
+    <link rel="stylesheet" href="<%= ctx%>/css/style1.css">
+    <link rel="stylesheet" href="<%= ctx%>/css/common.css">
+    <link rel="stylesheet" href="<%= ctx%>/css/reveal-it.css">
+    <script src="<%= ctx%>/js/jquery-2.1.1.js"></script>
+    <script src="<%= ctx%>/js/reveal-it.js"></script>
+    <script src="<%= ctx%>/js/main.js"></script>
 </head>
-<body background="img/bg.gif">
+<body class="frame-bd-c-1">
 
-    <div id="happy-birthday-to-you-audio">
-        <EMBED src="audio/happy-birthday.mp3" autostart="true" loop=20 width=0 height=0>
-    </div>
+    <div id="audio"></div>
 
-    <div id="main-container" style="margin-left: auto; margin-right: auto; width: 960px;">
-        <div id="content-1" style="margin-top: 50px; width: 700px; height: 200px; margin-left: auto; margin-right: auto;">
-            <div style="background: url(img/shinning-star.gif) no-repeat 0px 0px; width:80px; height: 80px; float: left;"></div>
-            <div style="background: url(img/shinning-star.gif) no-repeat 0px 0px; width:80px; height: 80px; float: right;"></div>
-            <div style="background: url(img/eval.jpg) no-repeat 0px 0px;width:400px; height: 150px; margin-left: 150px;"></div>
-        </div>
+    <div class="frame-main-container center">
 
-        <div class="express" style="color: bisque; text-align: left;">
-            <ul>
-                <li style="list-style-image: url(img/li-label.gif);">
-                    Light the candle and make a wish
-                    <div style="margin-left: 0px; margin-top: 50px;">
-                        <div style="width: 700px; margin-left: 100px;">
-                            <object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" height="450" width="650" border="0" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000">
-                                <param name="movie" value="flash/happy-birthday.swf?name=Eval">
-                                <param name="quality" value="High">
-                                <embed src="flash/happy-birthday.swf?name=Eval" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="650" height="450">
+        <div id="frame-divs-container" style="color: bisque; text-align: left;font-family: '叶根友毛笔行书2.0版';font-size:18px;">
+
+            <div class="step-1">
+                <div id="div-recipient" class="center">
+                    <div class="shining-star left-float"></div>
+                    <div class="shining-star right-float"></div>
+                    <div class="eval"></div>
+                </div>
+
+                <div style="margin-left: 0px; margin-top: 50px;">
+                    <div style="width: 700px; margin-left: 180px;">
+                        <object codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+                                height="450" width="650" border="0" classid="clsid:D27CDB6E-AE6D-11CF-96B8-444553540000">
+                            <param name="movie" value="flash/happy-birthday.swf?name=Eval">
+                            <param name="quality" value="High">
+                            <embed src="flash/happy-birthday.swf?name=Eval"
+                                   pluginspage="http://www.macromedia.com/go/getflashplayer"
+                                   type="application/x-shockwave-flash" name="obj1" width="650" height="450">
                                 <%--<embed src="flash/cake.swf" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="650" height="450">--%>
-                            </object>
-                        </div>
+                        </object>
                     </div>
-                </li>
-                <li style="list-style-image: url(img/li-label.gif); margin-top: 50px;">
-                    From Lesly
-                    <br><br>
-                    &emsp;&emsp;宝贝, 咱们认识后你的第一个生日, 很想回来陪你一起过, 遗憾假期可能会安排不过来. 如果今天我不能回来当面跟你说一声生日快乐. 那我一定会在远方送上祝福.
-                    希望你永远开心、快乐、幸福.
-                    </p>
-                </li>
-            </ul>
+                </div>
+            </div>
+
             <div id="bottom-nav" style="color: bisque; margin-top: 50px;">
-                <a href="#" onclick="javascript:Module.openPageInSelf('destiny.jsp');">
+                <a href="#" onclick="javascript:Schedule.openPageInSelf('letter-to-eval.jsp');">
                     <img src="img/arrow.jpg" style="width: 100px; float: right; margin-left: 10px; margin-right: 300px;">
                 </a>
-                <span style="float: right; margin-top: 20px;">Take Time machine</span>
+                <span style="float: right; margin-top: 20px;">A letter not yet posted</span>
             </div>
         </div>
+    </div>
 
-        <script type="application/javascript">
-            if(window.Module == undefined) {
-                Module = {};
-            }
-            Module = {
-                ctx : '<%= ctx%>',
-                openPageInSelf: function(link) {
-                    window.open(link, "_self");
-                }
+    <script type="application/javascript">
+        $(document).ready(function () {
+            var options1 = {
+                id: 'letter-to-eval'
             };
-
-            <!-- disable the viewing of source code -->
-            window.onload = function() {
-                document.onkeydown = function() {
-                    var e = window.event || arguments[0];
-                    //屏蔽F12
-                    if(e.keyCode == 123) {
-                        return false;
-                        //屏蔽Ctrl+Shift+I
-                    } else if((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
-                        return false;
-                        //屏蔽Shift+F10
-                    } else if((e.shiftKey) && (e.keyCode == 121)){
-                        return false;
-                    }
-                };
-                //屏蔽右键单击
-                document.oncontextmenu = function() {
-                    return false;
-                }
-            }
-        </script>
+            $('.letter-to-eval').initReveal(options1);
+            Media.startAudio('audio/happy-birthday.mp3', $('#audio'));
+        })
+    </script>
 
 </body>
 </html>

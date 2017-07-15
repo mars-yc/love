@@ -1,0 +1,19 @@
+
+/* style by id below */
+#div-recipient {
+    margin-top: 50px;
+    width: 700px;
+    height: 200px;
+}
+
+.frame-main-container {
+    width: 960px;
+}
+
+.frame-bd-c-1 {
+    background: url("../img/bg.gif");
+}
+
+#div-recipient .eval {
+    margin-left: 150px;
+}
