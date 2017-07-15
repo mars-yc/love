@@ -54,7 +54,11 @@ public class Uploader {
         }
         DiskFileItemFactory dff = new DiskFileItemFactory();
         String savePath = this.getFolder(this.savePath);
-        dff.setRepository(new File(savePath));
+        File uploadFolder = new File(savePath);
+        if(!uploadFolder.exists()) {
+            uploadFolder.mkdir();
+        }
+        dff.setRepository(uploadFolder);
         try {
             ServletFileUpload sfu = new ServletFileUpload(dff);
             sfu.setSizeMax(this.maxSize * 1024);
