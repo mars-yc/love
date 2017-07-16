@@ -11,11 +11,11 @@
 </head>
 <body>
     <div style="width: 960px; margin-left: auto; margin-right: auto">
-        <div id="blog-list">
+        <div id="blog-list" style="float: left; top: 0px; width: 200px;">
             <ul>
             </ul>
         </div>
-        <div id="blog-detail">
+        <div id="blog-detail" style="float: left; width: 200px;">
         </div>
     </div>
 </body>
@@ -27,12 +27,18 @@
             url: '<%= ctx%>/mvc/blog/load/<%= username%>',
             success: function (data) {
                 if (data != "") {
-                    $.each(data, function () {
-                        $('#blog-list ul').append('<li><a href="javascript:;">' + data[0].subject + '</a></li>');
+                    $.each(data, function (index, item) {
+                        $('#blog-list ul').append('<li><a href="javascript:displayBlog(&quot;blog_' + index + '&quot;);">' + item.subject + '</a></li>');
+                        $('#blog-detail').append('<div class="blog" id="blog_' + index + '">' + item.content + '</div>');
+                        $('.blog').hide();
                     });
                 }
             }
         });
-    })
+    });
+    function displayBlog(id) {
+        $('.blog').hide();
+        $('#' + id).show();
+    }
 </script>
 </html>
