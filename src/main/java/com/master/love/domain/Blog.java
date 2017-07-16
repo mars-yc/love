@@ -9,6 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "love_blog_tbl")
+//@Table(name = "love_blog_tbl", uniqueConstraints = {@UniqueConstraint(columnNames = {"subject", "user_id"})})
 public class Blog {
 
     @Id
@@ -16,10 +17,10 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
-    @Column(name = "subject")
+    @Column(name = "subject", nullable = false, length = 100)
     private String subject;
     @Type(type="text")
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
     @Column(name = "publish_time")
     @JsonSerialize(using = CustomizeDateSerialize.class)

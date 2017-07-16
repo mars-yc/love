@@ -26,12 +26,9 @@ public class BlogController {
 
     @RequestMapping(value = "/save")
     @ResponseBody
-    public Serializable save(HttpSession session, @RequestBody BlogUserWrapper param) {
-        logger.info(param);
+    public Serializable save(HttpSession session, @RequestBody Blog blog) {
+        logger.info(blog);
         String username = SessionHelper.getLoginId(session);
-
-        Blog blog = param.getBlog();
-
         Serializable id = blogService.save(blog, username);
         logger.info(id);
         return id;
@@ -50,6 +47,7 @@ public class BlogController {
  * 不能传递两个参数，如(@RequestBody Blog blogItem, @RequestBody User toUser)
  * 所以, 需要自己封装,封装类不能是内部类, 不然报错
  */
+@Deprecated
 class BlogUserWrapper {
 
     private Blog blog;

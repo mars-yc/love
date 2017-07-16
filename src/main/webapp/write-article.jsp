@@ -30,12 +30,6 @@
                 </td>
             </tr>
             <tr>
-                <td>Send To</td>
-                <td>
-                    <input id="to-user" type="text">
-                </td>
-            </tr>
-            <tr>
                 <td>Category</td>
                 <td>
                     <select id="category">
@@ -64,28 +58,20 @@
         var blogContent = um.getContent();
         var blogSubject = $('#subject').val();
         var blogCategory = $('#category').val();
-        var toUserName = $('#to-user').val();
 
-        var toUserJson = {
-            username: toUserName
-        }
         var blogJson = {
-            subject: blogSubject,
-            content: blogContent,
+            subject: $.trim(blogSubject) == '' ? null : blogSubject,
+            content: $.trim(blogContent) == '' ? null : blogContent,
             category: blogCategory,
-            publishTime: new Date()
+            publishTime: new Date(),
+            latestUpdateTime: new Date()
         }
-
-        var jsonData = {
-            blog: blogJson,
-            toUser: toUserJson
-        };
 
         $.ajax({
             type: "post",
             dataType: "json",
             url: '<%= ctx%>/mvc/blog/save',
-            data: JSON.stringify(jsonData),
+            data: JSON.stringify(blogJson),
 //            data: blogJson,
             contentType: "application/json; charset=utf-8",
             success: function (data) {
