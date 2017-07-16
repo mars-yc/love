@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -30,7 +31,6 @@ public class BlogController {
     public Serializable save(@RequestBody BlogUserWrapper param) {
         logger.info(param);
         Blog blog = param.getBlog();
-        //logger.info(toUser);
         Serializable id = blogService.save(blog);
         logger.info(id);
         return id;

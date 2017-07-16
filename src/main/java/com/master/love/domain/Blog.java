@@ -1,6 +1,7 @@
 package com.master.love.domain;
 
-import com.alibaba.fastjson.annotation.JSONField;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.master.love.util.CustomizeDateSerialize;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -21,9 +22,9 @@ public class Blog {
     @Column(name = "content")
     private String content;
     @Column(name = "publish_time")
-    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
+    @JsonSerialize(using = CustomizeDateSerialize.class)
     private Date publishTime;
-    @JSONField(format = "yyyy-MM-dd hh:mm:ss")
+    @JsonSerialize(using = CustomizeDateSerialize.class)
     @Column(name = "latest_update_time")
     private Date latestUpdateTime;
     @Column(name = "category")
