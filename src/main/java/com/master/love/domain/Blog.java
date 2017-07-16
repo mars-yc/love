@@ -31,6 +31,20 @@ public class Blog {
     private BlogCategory blogCategory;
     @Column(name = "viewed_times")
     private Integer viewedTimes;
+    @Transient
+    private User user;
+
+    public Blog() {
+    }
+
+    public Blog(String subject, String content, Date publishTime, Date latestUpdateTime, BlogCategory blogCategory, Integer viewedTimes) {
+        this.subject = subject;
+        this.content = content;
+        this.publishTime = publishTime;
+        this.latestUpdateTime = latestUpdateTime;
+        this.blogCategory = blogCategory;
+        this.viewedTimes = viewedTimes;
+    }
 
     public Integer getId() {
         return id;
@@ -88,6 +102,14 @@ public class Blog {
         this.viewedTimes = viewedTimes;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Blog{" +
@@ -98,6 +120,7 @@ public class Blog {
                 ", latestUpdateTime=" + latestUpdateTime +
                 ", blogCategory=" + blogCategory +
                 ", viewedTimes=" + viewedTimes +
+                ", user=" + user +
                 '}';
     }
 }

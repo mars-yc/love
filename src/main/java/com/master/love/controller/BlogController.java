@@ -1,13 +1,12 @@
 package com.master.love.controller;
 
 import com.master.love.domain.Blog;
+import com.master.love.domain.User;
 import com.master.love.service.BlogService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,14 +20,19 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("blog")
 public class BlogController {
 
+    private static final Logger logger = Logger.getLogger(BlogController.class);
+
     @Autowired
     private BlogService blogService;
 
     @RequestMapping(value = "/save")
     @ResponseBody
-    public Serializable save(Blog blog) {
+    public Serializable save(@RequestBody BlogUserWrapper param) {
+        logger.info(param);
+        Blog blog = param.getBlog();
+        //logger.info(toUser);
         Serializable id = blogService.save(blog);
-        System.out.println(id);
+        logger.info(id);
         return id;
     }
 
@@ -38,4 +42,39 @@ public class BlogController {
         return blogService.load();
     }
 
+}
+
+/**
+ * request的content-body是以流的形式进行读取的，读取完一次后，便无法再次读取了
+ * 不能传递两个参数，如(@RequestBody Blog blogItem, @RequestBody User toUser)
+ * 所以, 需要自己封装,封装类不能是内部类, 不然报错
+ */
+class BlogUserWrapper {
+
+    private Blog blog;
+    private User toUser;
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
+
+    public User getToUser() {
+        return toUser;
+    }
+
+    public void setToUser(User toUser) {
+        this.toUser = toUser;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogUserWrapper{" +
+                "blog=" + blog +
+                ", toUser=" + toUser +
+                '}';
+    }
 }
