@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BlogService {
 
-    Serializable save(Blog blog);
+    Serializable save(Blog blog, String username);
     List<Blog> loadByUserName(String username);
     List<Blog> load();
 

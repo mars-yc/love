@@ -3,6 +3,8 @@ package com.master.love.controller;
 import com.master.love.domain.Blog;
 import com.master.love.domain.User;
 import com.master.love.service.BlogService;
+import com.master.love.service.UserService;
+import com.master.love.util.SessionHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,13 +29,18 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/save")
     @ResponseBody
-    public Serializable save(@RequestBody BlogUserWrapper param) {
+    public Serializable save(HttpSession session, @RequestBody BlogUserWrapper param) {
         logger.info(param);
+        String username = SessionHelper.getLoginId(session);
+
         Blog blog = param.getBlog();
-        Serializable id = blogService.save(blog);
+
+        Serializable id = blogService.save(blog, username);
         logger.info(id);
         return id;
     }
