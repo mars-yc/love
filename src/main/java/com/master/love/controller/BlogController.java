@@ -3,23 +3,17 @@ package com.master.love.controller;
 import com.master.love.domain.Blog;
 import com.master.love.domain.User;
 import com.master.love.service.BlogService;
-import com.master.love.service.UserService;
 import com.master.love.util.SessionHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
 @Controller
 @RequestMapping("blog")
@@ -29,8 +23,6 @@ public class BlogController {
 
     @Autowired
     private BlogService blogService;
-    @Autowired
-    private UserService userService;
 
     @RequestMapping(value = "/save")
     @ResponseBody
