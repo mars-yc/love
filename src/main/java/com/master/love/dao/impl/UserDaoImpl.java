@@ -6,9 +6,11 @@ import com.master.love.dao.UserDao;
 import com.master.love.domain.User;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository("userDao")
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
