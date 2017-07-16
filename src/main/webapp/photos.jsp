@@ -376,7 +376,7 @@ Module = {
 	intervalId: 0,
 	currentIndex: 0,
     audioSrcUrlLoveFromOversea: 'audio/love-from-oversea.mp3',
-    audioSrcUrlFootprintOfRain: 'audio/footprint-of-rain.mp3',
+    audioSrcUrlFootprintOfRain: 'audio/风来君相忆.mp3',
 
 	displayPhotos: function () {
         var totalDivs = Module.imgSnapDivs.size();

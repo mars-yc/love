@@ -15,7 +15,7 @@
             <ul>
             </ul>
         </div>
-        <div id="blog-detail" style="float: left; width: 200px;">
+        <div id="blog-detail" style="float: left; width: 600px;">
         </div>
     </div>
 </body>
