@@ -32,6 +32,18 @@ public class User {
     @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="user")
     private List<Blog> blogs;
 
+    public User() {
+    }
+
+    public User(String username, String gender, String email, String phone, String address, Date registerTime) {
+        this.username = username;
+        this.gender = gender;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.registerTime = registerTime;
+    }
+
     public Integer getId() {
         return id;
     }

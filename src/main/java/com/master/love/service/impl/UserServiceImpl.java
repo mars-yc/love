@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service("userService")
@@ -24,5 +25,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> load() {
         return userDao.load();
+    }
+
+    @Override
+    public Serializable save(User user) {
+        return userDao.save(user);
     }
 }
