@@ -1,5 +1,6 @@
 package com.master.love.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.master.love.util.CustomizeDateSerialize;
 import org.hibernate.annotations.Type;
@@ -35,6 +36,7 @@ public class Blog {
     private Integer viewedTimes;
     @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name="user_id")
+    @JsonBackReference //this annotation is important, otherwise exception will be thrown saying  json infinite recursion stackoverflowerror
     private User user;
 
     public Blog() {

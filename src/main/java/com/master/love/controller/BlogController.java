@@ -7,6 +7,7 @@ import com.master.love.util.SessionHelper;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,6 +39,13 @@ public class BlogController {
     @ResponseBody
     public List<Blog> load() {
         return blogService.load();
+    }
+
+    @RequestMapping(value = "/load/{username}")
+    @ResponseBody
+    public List<Blog> loadByUserName(@PathVariable String username) {
+        List<Blog> list = blogService.loadByUserName(username);
+        return list;
     }
 
 }

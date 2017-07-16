@@ -35,9 +35,18 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.save(blog);
     }
 
+    /**
+     * Since lazy load blogs, exception will be thrown if return user.getBlogs() directly
+     */
     @Override
     public List<Blog> loadByUserName(String username) {
-        return null;
+        User user = userDao.findByUserName(username);
+        List<Blog> list = null;
+        if(user != null && user.getBlogs() != null && user.getBlogs().size() > 0) {
+            list = new ArrayList<>();
+            list.addAll(user.getBlogs());
+        }
+        return list;
     }
 
     @Override
