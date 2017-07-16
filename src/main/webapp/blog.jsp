@@ -24,13 +24,12 @@
 <script type="application/javascript">
     $(document).ready(function () {
         $.ajax({
-            type: "post",
+            type: "get",
             dataType: "json",
             url: '<%= ctx%>/mvc/blog/load',
-            data: jsonData,
             success: function (data) {
                 if (data != "") {
-                    alert(data);
+                    $('#content').append(data[0].content);
                 }
             }
         });

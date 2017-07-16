@@ -24,19 +24,19 @@
 
         <table style="color: #ffffff; font-size: 14px;">
             <tr>
-                <td>文章标题</td>
+                <td>Title</td>
                 <td>
                     <input id="subject" type="text">
                 </td>
             </tr>
             <tr>
-                <td>展示给用户</td>
+                <td>Send To</td>
                 <td>
                     <input id="to-user" type="text">
                 </td>
             </tr>
             <tr>
-                <td>文章分类</td>
+                <td>Category</td>
                 <td>
                     <select id="category">
                         <option value="测试分类1">测试分类1</option>
