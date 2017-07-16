@@ -47,6 +47,8 @@ public class UserServiceImplTest {
         User user = new User("eval", "女", "eval@foxmail.com", "18912839212", "北京", new Date());
         final Blog blog1 = new Blog("Junit test subject1", "Hello World!", new Date(), new Date(), new BlogCategory(), 100);
         final Blog blog2 = new Blog("Junit test subject2", "Nice to meet u", new Date(), new Date(), new BlogCategory(), 50);
+        blog1.setUser(user);
+        blog2.setUser(user);
         user.setBlogs(new ArrayList<Blog>(){{add(blog1); add(blog2);}});
         userService.save(user);
     }

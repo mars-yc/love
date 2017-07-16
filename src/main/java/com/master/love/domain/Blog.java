@@ -122,7 +122,6 @@ public class Blog {
                 ", latestUpdateTime=" + latestUpdateTime +
                 ", blogCategory=" + blogCategory +
                 ", viewedTimes=" + viewedTimes +
-                ", user=" + user +
                 '}';
     }
 }
