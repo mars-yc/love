@@ -32,7 +32,8 @@ public class Blog {
     private BlogCategory blogCategory;
     @Column(name = "viewed_times")
     private Integer viewedTimes;
-    @Transient
+    @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @JoinColumn(name="user_id")
     private User user;
 
     public Blog() {

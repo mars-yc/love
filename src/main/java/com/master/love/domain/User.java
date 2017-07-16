@@ -29,7 +29,7 @@ public class User {
     @Column(name = "register_time")
     @JsonSerialize(using = CustomizeDateSerialize.class)
     private Date registerTime;
-    @Transient
+    @OneToMany(cascade=CascadeType.ALL,fetch=FetchType.LAZY,mappedBy="user")
     private List<Blog> blogs;
 
     public Integer getId() {
