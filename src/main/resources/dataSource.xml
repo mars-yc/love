@@ -32,6 +32,7 @@
                 <prop key="hibernate.current_session_context_class">${hibernate.current_session_context_class.${RUN_MODE}}</prop>
                 <prop key="hibernate.dialect">${SYSTEM_DB_DIALECT}</prop>
                 <prop key="hibernate.dialect">${SYSTEM_DB_DIALECT}</prop>
+                <prop key="hibernate.hbm2ddl.import_files">${hibernate.hbm2ddl.import_files.${RUN_MODE}}</prop>
             </props>
         </property>
     </bean>
