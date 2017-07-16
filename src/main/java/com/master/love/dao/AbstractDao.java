@@ -54,13 +54,9 @@ public abstract class AbstractDao<T> implements BaseDao<T> {
         });
     }
 
-    private <T> T execute(DaoCallBack<T> callBack) {
+    protected <T> T execute(DaoCallBack<T> callBack) {
         Session session = sessionFactory.getCurrentSession();
         return callBack.doInAction(session);
-    }
-
-    private interface DaoCallBack<T> {
-        T doInAction(Session session);
     }
 
 }
