@@ -1,17 +1,35 @@
 package com.master.love.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.master.love.util.CustomizeDateSerialize;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "love_user_tbl")
 public class User {
 
+    @Id
+    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
     private Integer id;
+    @Column(name = "username", unique = true, nullable = false, length = 20)
     private String username;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "email")
     private String email;
+    @Column(name = "phone")
     private String phone;
+    @Column(name = "address")
     private String address;
+    @Column(name = "register_time")
+    @JsonSerialize(using = CustomizeDateSerialize.class)
     private Date registerTime;
+    @Transient
     private List<Blog> blogs;
 
     public Integer getId() {
