@@ -29,8 +29,8 @@ public class Blog {
     @JsonSerialize(using = CustomizeDateSerialize.class)
     @Column(name = "latest_update_time")
     private Date latestUpdateTime;
-    @Column(name = "category")
-    @Transient
+    @JoinColumn(name = "category_id")
+    @ManyToOne(targetEntity = BlogCategory.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private BlogCategory blogCategory;
     @Column(name = "viewed_times")
     private Integer viewedTimes;

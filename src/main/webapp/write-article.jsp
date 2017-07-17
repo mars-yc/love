@@ -33,9 +33,9 @@
                 <td>Category</td>
                 <td>
                     <select id="category">
-                        <option value="测试分类1">测试分类1</option>
+                        <%--<option value="测试分类1">测试分类1</option>
                         <option value="测试分类2">测试分类2</option>
-                        <option value="测试分类3">测试分类3</option>
+                        <option value="测试分类3">测试分类3</option>--%>
                     </select>
                 </td>
             </tr>
@@ -54,15 +54,35 @@
 
     var um = UM.getEditor('myEditor');
 
+    $.ajax({
+        type: "get",
+        url: '<%= ctx%>/mvc/blogCategory/load',
+        contentType: "application/json; charset=utf-8",
+        success: function (data) {
+            if (data != "") {
+                $.each(data, function (index, item) {
+                    $('#category').append('<option value="' + item.id + '">' + item.name + '</option>');
+                })
+            }
+        },
+        error: function () {
+            alert('error in retrieving blog categories');
+        }
+    });
+
     function getContent() {
         var blogContent = um.getContent();
         var blogSubject = $('#subject').val();
-        var blogCategory = $('#category').val();
+        var categoryId = $('#category').val();
+        var categoryName = $("#category").find("option:selected").text();
 
         var blogJson = {
             subject: $.trim(blogSubject) == '' ? null : blogSubject,
             content: $.trim(blogContent) == '' ? null : blogContent,
-            category: blogCategory,
+            blogCategory: {
+                id: categoryId,
+                name: categoryName
+            },
             publishTime: new Date(),
             latestUpdateTime: new Date()
         }
